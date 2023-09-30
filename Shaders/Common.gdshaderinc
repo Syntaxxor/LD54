@@ -1,0 +1,28 @@
+
+
+float get_dither_weight(ivec2 position) {
+	const float weights[16] = float[](
+		0.065,
+		0.5625,
+		0.1875,
+		0.6875,
+		0.8125,
+		0.3125,
+		0.9375,
+		0.4375,
+		0.25,
+		0.75,
+		0.125,
+		0.625,
+		1.0,
+		0.5,
+		0.875,
+		0.375
+	);
+	
+	int x = position.x % 4;
+	int y = position.y % 4;
+	int index = x + y * 4;
+	
+	return weights[index];
+}

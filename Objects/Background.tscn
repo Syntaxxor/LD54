@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://67ohqgorddin"]
+
+[ext_resource type="Texture2D" uid="uid://bks7cmg8pjqsl" path="res://Textures/NearBackground.png" id="1_712x7"]
+[ext_resource type="Texture2D" uid="uid://dre1vfp2xyvqw" path="res://Textures/FarBackground.png" id="1_ok5pi"]
+[ext_resource type="Shader" path="res://Shaders/Background.gdshader" id="3_88xxy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0eey8"]
+shader = ExtResource("3_88xxy")
+shader_parameter/top_color = Color(0.0941176, 0.152941, 0.321569, 1)
+shader_parameter/bottom_color = Color(0.329412, 0.227451, 0.0588235, 1)
+shader_parameter/bottom_point = 1.79
+
+[node name="Background" type="ParallaxBackground"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -101
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_0eey8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.203922, 0.0470588, 0.407843, 1)
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.25, 0.25)
+
+[node name="FarBackground" type="Sprite2D" parent="ParallaxLayer2"]
+texture_repeat = 2
+position = Vector2(0, 76)
+texture = ExtResource("1_ok5pi")
+region_enabled = true
+region_rect = Rect2(0, 0, 2560, 240)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.5, 0.5)
+
+[node name="NearBackground" type="Sprite2D" parent="ParallaxLayer"]
+texture_repeat = 2
+position = Vector2(0, 92)
+texture = ExtResource("1_712x7")
+region_enabled = true
+region_rect = Rect2(0, 0, 2560, 240)
