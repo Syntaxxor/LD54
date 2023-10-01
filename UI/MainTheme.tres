@@ -1,0 +1,133 @@
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://dvxg1y76ows4c"]
+
+[ext_resource type="FontFile" uid="uid://b16wgmoqlx7em" path="res://Fonts/ChicagoFLF.ttf" id="1_tx71o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pq0fj"]
+bg_color = Color(0.192157, 0.32549, 0.34902, 1)
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.537255, 0.537255, 0.282353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jhgwq"]
+bg_color = Color(0.192157, 0.32549, 0.34902, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.317647, 0.721569, 0.803922, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fhvh2"]
+bg_color = Color(0.192157, 0.32549, 0.34902, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0745098, 0.168627, 0.188235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mocx"]
+bg_color = Color(0.0823529, 0.137255, 0.14902, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.27451, 0.376471, 0.533333, 1)
+
+[sub_resource type="Gradient" id="Gradient_cl0ut"]
+offsets = PackedFloat32Array(0.93865, 1)
+colors = PackedColorArray(0.365962, 0.576785, 0.617628, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tmuoa"]
+gradient = SubResource("Gradient_cl0ut")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_g3j5b"]
+offsets = PackedFloat32Array(0.93865, 1)
+colors = PackedColorArray(0.748558, 0.381177, 0.685403, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_whlef"]
+gradient = SubResource("Gradient_g3j5b")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_t282i"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sy5wu"]
+gradient = SubResource("Gradient_t282i")
+width = 1
+height = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xujqk"]
+content_margin_left = 0.0
+content_margin_top = 4.0
+content_margin_right = 0.0
+content_margin_bottom = 4.0
+bg_color = Color(0.45098, 0.631373, 0.772549, 0.768627)
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wvytu"]
+content_margin_left = 0.0
+content_margin_top = 4.0
+content_margin_right = 0.0
+content_margin_bottom = 4.0
+bg_color = Color(0.627451, 0.54902, 0.788235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tpw6b"]
+content_margin_left = 0.0
+content_margin_top = 4.0
+content_margin_right = 0.0
+content_margin_bottom = 4.0
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ufe1p"]
+bg_color = Color(0.156863, 0.156863, 0.156863, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d5jla"]
+bg_color = Color(0.403922, 0.784314, 0.411765, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_bqquw"]
+base_font = ExtResource("1_tx71o")
+opentype_features = {
+1667329140: 0
+}
+
+[resource]
+default_font = SubResource("FontVariation_bqquw")
+default_font_size = 16
+Button/styles/focus = SubResource("StyleBoxFlat_pq0fj")
+Button/styles/hover = SubResource("StyleBoxFlat_jhgwq")
+Button/styles/normal = SubResource("StyleBoxFlat_fhvh2")
+Button/styles/pressed = SubResource("StyleBoxFlat_8mocx")
+HSlider/icons/grabber = SubResource("GradientTexture2D_tmuoa")
+HSlider/icons/grabber_highlight = SubResource("GradientTexture2D_whlef")
+HSlider/icons/tick = SubResource("GradientTexture2D_sy5wu")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_xujqk")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_wvytu")
+HSlider/styles/slider = SubResource("StyleBoxFlat_tpw6b")
+HeaderLarge/base_type = &"Label"
+HeaderLarge/colors/font_outline_color = Color(0, 0, 0, 1)
+HeaderLarge/constants/outline_size = 4
+HeaderLarge/font_sizes/font_size = 18
+HeaderMedium/base_type = &"Label"
+HeaderMedium/colors/font_outline_color = Color(0, 0, 0, 1)
+HeaderMedium/constants/outline_size = 4
+Label/font_sizes/font_size = 12
+MarginContainer/constants/margin_bottom = 4
+MarginContainer/constants/margin_left = 4
+MarginContainer/constants/margin_right = 4
+MarginContainer/constants/margin_top = 4
+ProgressBar/styles/background = SubResource("StyleBoxFlat_ufe1p")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_d5jla")
+TabBar/font_sizes/font_size = 8

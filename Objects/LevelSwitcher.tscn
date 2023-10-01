@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgt70jtj6lvwj"]
+
+[ext_resource type="Script" path="res://Scripts/LevelSwitcher.gd" id="1_dbutx"]
+[ext_resource type="Texture2D" uid="uid://pbw1c0og5w8v" path="res://Textures/PlayerCharacter.png" id="2_wcwqi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jph3c"]
+atlas = ExtResource("2_wcwqi")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a028j"]
+atlas = ExtResource("2_wcwqi")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m5k6b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jph3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a028j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="LevelSwitcher" type="CanvasLayer"]
+layer = 128
+script = ExtResource("1_dbutx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ColorRect"]
+position = Vector2(308, 168)
+sprite_frames = SubResource("SpriteFrames_m5k6b")
+autoplay = "default"
+frame_progress = 0.593447

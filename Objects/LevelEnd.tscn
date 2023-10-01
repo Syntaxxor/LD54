@@ -1,0 +1,117 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdjnlhh8h2wjr"]
+
+[ext_resource type="Script" path="res://Scripts/LevelEnd.gd" id="1_2l7os"]
+[ext_resource type="Texture2D" uid="uid://c3ibv2o05yh04" path="res://Textures/LevelEnd_0002.png" id="1_20h3s"]
+[ext_resource type="Texture2D" uid="uid://cubm4wfkk5w66" path="res://Textures/LevelEnd_0001.png" id="2_eys4d"]
+[ext_resource type="Theme" uid="uid://dvxg1y76ows4c" path="res://UI/MainTheme.tres" id="4_6d82f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7bpij"]
+size = Vector2(8, 24)
+
+[node name="LevelEnd" type="StaticBody2D"]
+script = ExtResource("1_2l7os")
+
+[node name="LevelEnd0002" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, -16)
+texture = ExtResource("1_20h3s")
+
+[node name="LevelEnd0001" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -16)
+texture = ExtResource("2_eys4d")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-16, 0, 0, -8, 16, -8, 16, 0)
+
+[node name="EndTrigger" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndTrigger"]
+position = Vector2(8, -20)
+shape = SubResource("RectangleShape2D_7bpij")
+
+[node name="EndScreen" type="CanvasLayer" parent="."]
+process_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="EndScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.521569)
+
+[node name="Control" type="Control" parent="EndScreen"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_6d82f")
+
+[node name="Label" type="Label" parent="EndScreen/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -58.0
+offset_right = 20.0
+offset_bottom = -43.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"HeaderMedium"
+text = "Successfully Delivered:"
+
+[node name="ItemNameLabel" type="Label" parent="EndScreen/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.5
+offset_top = -42.0
+offset_right = 75.5
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"HeaderMedium"
+text = "Item Name"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndScreen/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -6.0
+offset_right = 61.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Next" type="Button" parent="EndScreen/Control/VBoxContainer"]
+layout_mode = 2
+text = "Next Level"
+
+[node name="Restart" type="Button" parent="EndScreen/Control/VBoxContainer"]
+layout_mode = 2
+text = "Restart Level"
+
+[node name="Menu" type="Button" parent="EndScreen/Control/VBoxContainer"]
+layout_mode = 2
+text = "Back to Menu"
+
+[connection signal="body_entered" from="EndTrigger" to="." method="_on_end_trigger_body_entered"]
+[connection signal="pressed" from="EndScreen/Control/VBoxContainer/Next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="EndScreen/Control/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="EndScreen/Control/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
