@@ -55,19 +55,14 @@ func _physics_process(delta: float):
 	if can_move:
 		standard_movement(delta)
 		do_animations()
-		do_particles()
+	
+	was_on_floor = has_full_control && velocity.y >= 0.0
 	
 	move_and_slide()
 	
+	do_particles()
+	
 	has_full_control = is_on_floor()
-	
-	if was_on_floor && !has_full_control:
-		var motion = Vector2.DOWN * step_down_dist
-		if test_move(transform, motion):
-			move_and_collide(motion)
-			has_full_control = true
-	
-	was_on_floor = has_full_control && velocity.y >= 0.0
 
 
 func standard_movement(delta: float):
@@ -108,8 +103,12 @@ func do_particles():
 		var is_sliding = sign(target_vel) * sign(velocity.x) < 0.0
 		$Particles/MoveParticles.emitting = !is_sliding && velocity.x != 0.0
 		$Particles/SlideParticles.emitting = is_sliding && velocity.x != 0.0
+		if !was_on_floor:
+			$Particles/JumpLandParticles.restart()
+			$Particles/JumpLandParticles.emitting = true
 	else:
-		pass
+		$Particles/MoveParticles.emitting = false
+		$Particles/SlideParticles.emitting = false
 
 
 func _on_resume_button_pressed():
@@ -121,3 +120,9 @@ func _on_to_menu_button_pressed():
 	get_tree().paused = false
 	Engine.time_scale = 1.0
 	LevelSwitcher.change_level("res://MainMenu.tscn")
+
+
+func _on_restart_button_pressed():
+	get_tree().paused = false
+	Engine.time_scale = 1.0
+	LevelSwitcher.change_level(get_tree().current_scene.scene_file_path)
