@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 LevelSwitcher="*res://Objects/LevelSwitcher.tscn"
+SpeedrunTimer="*res://Scripts/SpeedrunTimer.gd"
 
 [display]
 

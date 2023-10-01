@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca7e0urq7efdl"]
+
+[ext_resource type="PackedScene" uid="uid://67ohqgorddin" path="res://Objects/Background.tscn" id="1_17oxw"]
+[ext_resource type="PackedScene" uid="uid://cgdmbasimfie4" path="res://Objects/ShadowGradient.tscn" id="2_dotvx"]
+
+[node name="LevelEnvironment" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_17oxw")]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("2_dotvx")]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+rotation = 0.643361
+color = Color(0, 0, 0, 1)
+range_layer_min = -100
+range_layer_max = 1

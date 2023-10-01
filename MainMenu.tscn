@@ -8,7 +8,7 @@
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_oa7vy")
-level_paths = Array[String](["res://Levels/TestingArea.tscn", "", "", "", "", "", "", "", "", ""])
+level_paths = Array[String](["res://Levels/Level_0.tscn", "res://Levels/TestingArea.tscn", "", "", "", "", "", "", ""])
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -148,6 +148,18 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "Back"
 
+[node name="SpeedrunOption" type="OptionButton" parent="Settings/PanelContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+item_count = 3
+selected = 0
+popup/item_0/text = "Speedrun Off"
+popup/item_0/id = 0
+popup/item_1/text = "Speedrun Level"
+popup/item_1/id = 1
+popup/item_2/text = "Speedrun Game"
+popup/item_2/id = 2
+
 [node name="FullscreenButton" type="CheckButton" parent="Settings/PanelContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -216,6 +228,7 @@ range_layer_max = 1
 [connection signal="pressed" from="MainMenu/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="ScrollContainer/LevelSelect/BackToMenu" to="." method="_on_back_to_menu_pressed"]
 [connection signal="pressed" from="Settings/PanelContainer/ScrollContainer/VBoxContainer/BackToMenu" to="." method="_on_back_to_menu_pressed"]
+[connection signal="item_selected" from="Settings/PanelContainer/ScrollContainer/VBoxContainer/SpeedrunOption" to="." method="_on_speedrun_option_item_selected"]
 [connection signal="pressed" from="Settings/PanelContainer/ScrollContainer/VBoxContainer/FullscreenButton" to="." method="save_settings"]
 [connection signal="changed" from="Settings/PanelContainer/ScrollContainer/VBoxContainer/Global" to="." method="save_settings"]
 [connection signal="changed" from="Settings/PanelContainer/ScrollContainer/VBoxContainer/SFX" to="." method="save_settings"]

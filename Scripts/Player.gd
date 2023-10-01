@@ -38,8 +38,13 @@ func get_dir():
 
 func _ready():
 	$PauseMenu.visible = false
-	await(sprite.animation_finished)
-	can_move = true
+	$Abilities.visible = true
+	if SpeedrunTimer.speedrun_mode == SpeedrunTimer.SpeedrunMode.Off:
+		sprite.play("Activate")
+		await(sprite.animation_finished)
+		can_move = true
+	else:
+		can_move = true
 
 
 func _process(delta):
@@ -118,11 +123,17 @@ func _on_resume_button_pressed():
 
 func _on_to_menu_button_pressed():
 	get_tree().paused = false
+	$Abilities.emit_signal("cancel_tweens")
 	Engine.time_scale = 1.0
 	LevelSwitcher.change_level("res://MainMenu.tscn")
 
 
-func _on_restart_button_pressed():
+func restart_level():
 	get_tree().paused = false
+	$Abilities.emit_signal("cancel_tweens")
 	Engine.time_scale = 1.0
 	LevelSwitcher.change_level(get_tree().current_scene.scene_file_path)
+
+
+func _on_restart_button_pressed():
+	restart_level()

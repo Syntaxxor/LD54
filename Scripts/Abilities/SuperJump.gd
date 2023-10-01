@@ -5,11 +5,13 @@ extends AbilityBase
 @export var jump_vel := 256.0
 @export var max_charge := 1.0
 @export var jump_land_particles: GPUParticles2D
+@export var super_jump_particles: GPUParticles2D
 
 var charge = 0.0
 
 
 func _ready():
+	super._ready()
 	super_jump_bar.max_value = max_charge
 
 
@@ -24,6 +26,7 @@ func _physics_process(delta):
 			player.velocity.y = -jump_vel
 			jump_land_particles.restart()
 			jump_land_particles.emitting = true
+			super_jump_particles.emitting = true
 			player.is_charging = false
 		else:
 			charge = 0.0

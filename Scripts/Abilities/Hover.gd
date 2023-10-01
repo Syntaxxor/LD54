@@ -10,6 +10,7 @@ var hover_time = max_hover_time
 
 
 func _ready():
+	super._ready()
 	hover_bar.max_value = max_hover_time
 
 

@@ -26,7 +26,7 @@ animations = [{
 }]
 
 [node name="LevelSwitcher" type="CanvasLayer"]
-layer = 128
+layer = 127
 script = ExtResource("1_dbutx")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -41,4 +41,4 @@ color = Color(0, 0, 0, 1)
 position = Vector2(308, 168)
 sprite_frames = SubResource("SpriteFrames_m5k6b")
 autoplay = "default"
-frame_progress = 0.593447
+frame_progress = 0.189345

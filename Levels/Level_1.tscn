@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://wn8bxv7bi1gk"]
+
+[ext_resource type="PackedScene" uid="uid://ca7e0urq7efdl" path="res://Objects/LevelEnvironment.tscn" id="1_cqygs"]
+[ext_resource type="PackedScene" uid="uid://buoem823x7i00" path="res://Objects/DeathTrigger.tscn" id="2_4w0ui"]
+
+[node name="Level_1" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[node name="LevelEnvironment" parent="." instance=ExtResource("1_cqygs")]
+
+[node name="DeathTrigger" parent="." instance=ExtResource("2_4w0ui")]

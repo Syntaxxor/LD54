@@ -1,6 +1,9 @@
 extends CanvasLayer
 
 
+signal cancel_tweens
+
+
 @export var slow_time = 0.125
 
 @onready var animation_player := $AnimationPlayer
@@ -23,7 +26,7 @@ var selected: Area2D = null
 func _ready():
 	for i in range(0, abilities.size()):
 		var bit_flag = 1 << i
-		abilities[i].enabled = bit_flag & player.enabled_abilities != 0
+		abilities[i].enabled = (bit_flag & player.enabled_abilities) != 0
 		abilities[i].z_index = 1
 
 
@@ -34,11 +37,20 @@ func _process(delta):
 		if !is_active && player.is_on_floor():
 			is_active = true
 			animation_player.play_backwards("Slide")
-			create_tween().tween_property(Engine, "time_scale", slow_time, 0.1)
+			var tween := create_tween()
+			tween.tween_property(Engine, "time_scale", slow_time, 0.1)
+			
+			cancel_tweens.connect(tween.kill)
+			
+			tween.finished.connect(disconnect.bind("cancel_tweens", tween.kill))
 		elif is_active:
 			is_active = false
 			animation_player.play("Slide")
-			create_tween().tween_property(Engine, "time_scale", 1.0, 0.1)
+			var tween := create_tween()
+			tween.tween_property(Engine, "time_scale", 1.0, 0.1)
+			
+			cancel_tweens.connect(tween.kill)
+			tween.finished.connect(disconnect.bind("cancel_tweens", tween.kill))
 	
 	if is_active:
 		cursor_movement()

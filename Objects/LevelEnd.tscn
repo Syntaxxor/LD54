@@ -13,18 +13,20 @@ script = ExtResource("1_2l7os")
 
 [node name="LevelEnd0002" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(0, -16)
+position = Vector2(-16, -16)
 texture = ExtResource("1_20h3s")
 
 [node name="LevelEnd0001" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(0, -16)
+position = Vector2(-16, -16)
 texture = ExtResource("2_eys4d")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-16, 0)
 polygon = PackedVector2Array(-16, 0, 0, -8, 16, -8, 16, 0)
 
 [node name="EndTrigger" type="Area2D" parent="."]
+position = Vector2(-16, 0)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndTrigger"]
@@ -69,20 +71,18 @@ text = "Successfully Delivered:"
 
 [node name="ItemNameLabel" type="Label" parent="EndScreen/Control"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -75.5
-offset_top = -42.0
-offset_right = 75.5
-offset_bottom = -24.0
+offset_left = -156.0
+offset_top = 48.0
+offset_right = 156.0
+offset_bottom = 71.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_type_variation = &"HeaderMedium"
-text = "Item Name"
 horizontal_alignment = 1
+vertical_alignment = 3
+autowrap_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EndScreen/Control"]
 layout_mode = 1
