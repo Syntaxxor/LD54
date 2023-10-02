@@ -45,3 +45,4 @@ func end_level(final: bool):
 
 func hide_timer():
 	timer_label.visible = false
+	is_running = false

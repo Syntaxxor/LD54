@@ -34,3 +34,5 @@ func _physics_process(delta):
 	else:
 		hover_bar.visible = false
 		hover_particles.emitting = false
+	if $AudioStreamPlayer.playing != hover_particles.emitting:
+		$AudioStreamPlayer.playing = hover_particles.emitting

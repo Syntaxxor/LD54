@@ -8,4 +8,5 @@ func _ready():
 
 func collision(body: Node2D):
 	if body.has_method("restart_level"):
+		$AudioStreamPlayer.play()
 		body.restart_level()

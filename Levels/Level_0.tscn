@@ -19,6 +19,15 @@ layer_0/tile_data = PackedInt32Array(65496, 131072, 1, 65497, 131072, 1, 65498, 
 
 [node name="LevelEnvironment" parent="." instance=ExtResource("2_6krg6")]
 
+[node name="DeathTrigger" parent="." instance=ExtResource("5_ksflu")]
+
+[node name="LevelEnd" parent="." instance=ExtResource("4_w1n05")]
+position = Vector2(592, -208)
+rotation = 3.14159
+scale = Vector2(1, -1)
+next_level = "res://Levels/Level_1.tscn"
+delivery_name = "A crate of edible microchips."
+
 [node name="Label" type="Label" parent="."]
 offset_left = 768.0
 offset_top = -120.0
@@ -26,15 +35,10 @@ offset_right = 808.0
 offset_bottom = -105.0
 text = "Adenya's Polygon"
 
-[node name="LevelEnd" parent="." instance=ExtResource("4_w1n05")]
-position = Vector2(592, -208)
-scale = Vector2(-1, 1)
-next_level = "res://Levels/Level_1.tscn"
-delivery_name = "A crate of edible microchips."
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
 
-[node name="DeathTrigger" parent="." instance=ExtResource("5_ksflu")]
-
-[node name="Label2" type="Label" parent="."]
+[node name="Label2" type="Label" parent="CanvasLayer"]
 offset_left = -400.0
 offset_top = 64.0
 offset_right = -160.0

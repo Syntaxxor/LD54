@@ -24,7 +24,9 @@ var target_vel = 0.0
 
 var is_charging = false
 
-var was_on_floor = false
+var was_on_floor = true
+
+var particle_delay_flag = 2
 
 @onready var sprite = $AnimatedSprite2D
 
@@ -41,6 +43,7 @@ func _ready():
 	$Abilities.visible = true
 	if SpeedrunTimer.speedrun_mode == SpeedrunTimer.SpeedrunMode.Off:
 		sprite.play("Activate")
+		$StartupSFX.play()
 		await(sprite.animation_finished)
 		can_move = true
 	else:
@@ -65,7 +68,10 @@ func _physics_process(delta: float):
 	
 	move_and_slide()
 	
-	do_particles()
+	if particle_delay_flag == 0:
+		do_particles()
+	else:
+		particle_delay_flag -= 1
 	
 	has_full_control = is_on_floor()
 
@@ -111,6 +117,7 @@ func do_particles():
 		if !was_on_floor:
 			$Particles/JumpLandParticles.restart()
 			$Particles/JumpLandParticles.emitting = true
+			$LandSFX.play()
 	else:
 		$Particles/MoveParticles.emitting = false
 		$Particles/SlideParticles.emitting = false

@@ -21,6 +21,7 @@ func _ready():
 		var new_button := Button.new()
 		new_button.text = "Lv. " + str(i)
 		new_button.pressed.connect(change_level.bind(level_paths[i]))
+		new_button.set_script(load("res://Scripts/UISounds.gd"))
 		$ScrollContainer/LevelSelect.add_child(new_button)
 	
 	SpeedrunTimer.hide_timer()
@@ -107,4 +108,8 @@ func apply_settings():
 
 
 func _on_speedrun_option_item_selected(index):
+	save_settings()
+
+
+func sound_value_changed(value):
 	save_settings()

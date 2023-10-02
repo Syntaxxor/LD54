@@ -26,6 +26,7 @@ animations = [{
 }]
 
 [node name="LevelSwitcher" type="CanvasLayer"]
+process_mode = 3
 layer = 127
 script = ExtResource("1_dbutx")
 

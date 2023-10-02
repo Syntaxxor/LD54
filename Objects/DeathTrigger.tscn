@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://buoem823x7i00"]
+[gd_scene load_steps=4 format=3 uid="uid://buoem823x7i00"]
 
 [ext_resource type="Script" path="res://Scripts/DeathTrigger.gd" id="1_843oh"]
+[ext_resource type="AudioStream" uid="uid://do2p3whl7f1ob" path="res://SFX/fall.ogg" id="2_qp0dj"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pham0"]
 distance = -192.0
@@ -10,3 +11,6 @@ script = ExtResource("1_843oh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("WorldBoundaryShape2D_pham0")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_qp0dj")

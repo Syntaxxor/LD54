@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://clbjx5y6mj4la"]
+[gd_scene load_steps=7 format=3 uid="uid://clbjx5y6mj4la"]
 
 [ext_resource type="PackedScene" uid="uid://67ohqgorddin" path="res://Objects/Background.tscn" id="1_kw3tc"]
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_oa7vy"]
 [ext_resource type="Theme" uid="uid://dvxg1y76ows4c" path="res://UI/MainTheme.tres" id="2_7w150"]
 [ext_resource type="TileSet" uid="uid://d0jjl3a80btdd" path="res://TileSets/TileSet.tres" id="3_j51uw"]
 [ext_resource type="PackedScene" uid="uid://cgdmbasimfie4" path="res://Objects/ShadowGradient.tscn" id="5_1auof"]
+[ext_resource type="Script" path="res://Scripts/UISounds.gd" id="5_gkr6y"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_oa7vy")
-level_paths = Array[String](["res://Levels/Level_0.tscn", "res://Levels/Level_1.tscn", "", "", "", "", "", "", ""])
+level_paths = Array[String](["res://Levels/Level_0.tscn", "res://Levels/Level_1.tscn", "res://Levels/Level_2.tscn", "res://Levels/Level_3.tscn"])
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -58,14 +59,17 @@ alignment = 1
 [node name="StartButton" type="Button" parent="MainMenu"]
 layout_mode = 2
 text = "Play"
+script = ExtResource("5_gkr6y")
 
 [node name="OptionsButton" type="Button" parent="MainMenu"]
 layout_mode = 2
 text = "Settings"
+script = ExtResource("5_gkr6y")
 
 [node name="QuitButton" type="Button" parent="MainMenu"]
 layout_mode = 2
 text = "Quit"
+script = ExtResource("5_gkr6y")
 
 [node name="Label2" type="Label" parent="."]
 anchors_preset = 7
@@ -107,6 +111,7 @@ size_flags_horizontal = 3
 [node name="BackToMenu" type="Button" parent="ScrollContainer/LevelSelect"]
 layout_mode = 2
 text = "Back"
+script = ExtResource("5_gkr6y")
 
 [node name="Settings" type="Control" parent="."]
 layout_mode = 3
@@ -147,6 +152,7 @@ text = "General"
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Back"
+script = ExtResource("5_gkr6y")
 
 [node name="SpeedrunOption" type="OptionButton" parent="Settings/PanelContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -159,11 +165,13 @@ popup/item_1/text = "Speedrun Level"
 popup/item_1/id = 1
 popup/item_2/text = "Speedrun Game"
 popup/item_2/id = 2
+script = ExtResource("5_gkr6y")
 
 [node name="FullscreenButton" type="CheckButton" parent="Settings/PanelContainer/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Fullscreen"
+script = ExtResource("5_gkr6y")
 
 [node name="Label2" type="Label" parent="Settings/PanelContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -180,6 +188,7 @@ layout_mode = 2
 max_value = 10.0
 value = 10.0
 tick_count = 11
+script = ExtResource("5_gkr6y")
 
 [node name="Label4" type="Label" parent="Settings/PanelContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -191,6 +200,7 @@ layout_mode = 2
 max_value = 10.0
 value = 10.0
 tick_count = 11
+script = ExtResource("5_gkr6y")
 
 [node name="Label5" type="Label" parent="Settings/PanelContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -203,6 +213,7 @@ layout_mode = 2
 max_value = 10.0
 value = 10.0
 tick_count = 11
+script = ExtResource("5_gkr6y")
 
 [node name="MainMenuTarget" type="Node2D" parent="."]
 
@@ -230,6 +241,6 @@ range_layer_max = 1
 [connection signal="pressed" from="Settings/PanelContainer/ScrollContainer/VBoxContainer/BackToMenu" to="." method="_on_back_to_menu_pressed"]
 [connection signal="item_selected" from="Settings/PanelContainer/ScrollContainer/VBoxContainer/SpeedrunOption" to="." method="_on_speedrun_option_item_selected"]
 [connection signal="pressed" from="Settings/PanelContainer/ScrollContainer/VBoxContainer/FullscreenButton" to="." method="save_settings"]
-[connection signal="changed" from="Settings/PanelContainer/ScrollContainer/VBoxContainer/Global" to="." method="save_settings"]
-[connection signal="changed" from="Settings/PanelContainer/ScrollContainer/VBoxContainer/SFX" to="." method="save_settings"]
-[connection signal="changed" from="Settings/PanelContainer/ScrollContainer/VBoxContainer/Music" to="." method="save_settings"]
+[connection signal="value_changed" from="Settings/PanelContainer/ScrollContainer/VBoxContainer/Global" to="." method="sound_value_changed"]
+[connection signal="value_changed" from="Settings/PanelContainer/ScrollContainer/VBoxContainer/SFX" to="." method="sound_value_changed"]
+[connection signal="value_changed" from="Settings/PanelContainer/ScrollContainer/VBoxContainer/Music" to="." method="sound_value_changed"]

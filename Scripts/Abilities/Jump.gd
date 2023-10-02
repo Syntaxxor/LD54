@@ -29,3 +29,4 @@ func _physics_process(delta):
 			player.has_full_control = false
 			jump_land_particles.restart()
 			jump_land_particles.emitting = true
+			$AudioStreamPlayer.play()

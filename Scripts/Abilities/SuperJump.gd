@@ -20,6 +20,7 @@ func _physics_process(delta):
 	if button_name != null && player.can_move:
 		if player.is_on_floor() && Input.is_action_pressed(button_name):
 			charge = min(charge + delta, max_charge)
+			$ChargeSFX.pitch_scale = charge + 1.0
 			player.is_charging = true
 		elif Input.is_action_just_released(button_name) && charge == max_charge:
 			charge = 0.0
@@ -27,9 +28,15 @@ func _physics_process(delta):
 			jump_land_particles.restart()
 			jump_land_particles.emitting = true
 			super_jump_particles.emitting = true
+			$JumpSFX.play()
 			player.is_charging = false
 		else:
 			charge = 0.0
 			player.is_charging = false
 		super_jump_bar.value = charge
+	if $ChargeSFX.playing != player.is_charging:
+		if player.is_charging:
+			$ChargeSFX.play()
+		else:
+			$ChargeSFX.stop()
 	super_jump_bar.visible = player.is_charging

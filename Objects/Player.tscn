@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://ddusvf1o8rfkx"]
+[gd_scene load_steps=62 format=3 uid="uid://ddusvf1o8rfkx"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_28e3r"]
 [ext_resource type="Texture2D" uid="uid://pbw1c0og5w8v" path="res://Textures/PlayerCharacter.png" id="1_hjwha"]
@@ -14,9 +14,18 @@
 [ext_resource type="Script" path="res://Scripts/Abilities/Dash.gd" id="7_xhdwk"]
 [ext_resource type="Texture2D" uid="uid://dqhrufx411585" path="res://Textures/Abilities/Dash.png" id="9_dwmky"]
 [ext_resource type="Script" path="res://Scripts/Abilities/Hover.gd" id="10_dfwt3"]
+[ext_resource type="AudioStream" uid="uid://bcxvx35eo0yv4" path="res://SFX/jump.ogg" id="11_edimr"]
 [ext_resource type="Texture2D" uid="uid://byo3567ultd7e" path="res://Textures/Abilities/Hover.png" id="11_w5u6o"]
 [ext_resource type="Script" path="res://Scripts/Abilities/SuperJump.gd" id="12_egriw"]
 [ext_resource type="Texture2D" uid="uid://dgqqsgqfua43b" path="res://Textures/Abilities/SuperJump.png" id="12_p0ldp"]
+[ext_resource type="AudioStream" uid="uid://u0tldxnyx3x1" path="res://SFX/dash.ogg" id="14_mysbv"]
+[ext_resource type="AudioStream" uid="uid://cr7xtgcrur1lh" path="res://SFX/hover.ogg" id="15_gai1c"]
+[ext_resource type="AudioStream" uid="uid://dk675dfhe33oc" path="res://SFX/charge.ogg" id="18_bwulq"]
+[ext_resource type="AudioStream" uid="uid://d4kwk2bpdcbk6" path="res://SFX/land.ogg" id="20_1caqa"]
+[ext_resource type="AudioStream" uid="uid://dlbxm0ocphryg" path="res://SFX/super_jump.ogg" id="20_bgqow"]
+[ext_resource type="AudioStream" uid="uid://bnbfeavpxqdf3" path="res://SFX/click.ogg" id="23_45isu"]
+[ext_resource type="AudioStream" uid="uid://cpdt536ygv5wm" path="res://SFX/ui_move.ogg" id="24_5ue7u"]
+[ext_resource type="AudioStream" uid="uid://clma587iqdnwo" path="res://SFX/startup.ogg" id="24_imgoy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_durot"]
 size = Vector2(10, 12)
@@ -268,6 +277,12 @@ size = Vector2(4, 96)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_esqlg"]
 size = Vector2(96, 4)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ih1gj"]
+size = Vector2(4, 184)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ehu13"]
+size = Vector2(312, 4)
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
 floor_constant_speed = true
@@ -389,7 +404,6 @@ show_percentage = false
 
 [node name="Abilities" type="CanvasLayer" parent="."]
 layer = 2
-visible = false
 offset = Vector2(160, 270)
 transform = Transform2D(1, 0, 0, 1, 160, 270)
 script = ExtResource("3_n67tv")
@@ -434,6 +448,10 @@ shape = SubResource("RectangleShape2D_mggqk")
 position = Vector2(0, -24)
 shape = SubResource("RectangleShape2D_mlp7w")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Abilities/JumpAbility"]
+stream = ExtResource("11_edimr")
+bus = &"SFX"
+
 [node name="DashAbility" type="Area2D" parent="Abilities" node_paths=PackedStringArray("dash_particles", "dash_particles_left", "player")]
 position = Vector2(96, -64)
 script = ExtResource("7_xhdwk")
@@ -456,10 +474,16 @@ texture = ExtResource("9_dwmky")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Abilities/DashAbility"]
 shape = SubResource("RectangleShape2D_qce1i")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Abilities/DashAbility"]
+stream = ExtResource("14_mysbv")
+bus = &"SFX"
+
 [node name="HoverAbility" type="Area2D" parent="Abilities" node_paths=PackedStringArray("hover_bar", "hover_particles", "player")]
 position = Vector2(-96, -32)
 script = ExtResource("10_dfwt3")
 hover_bar = NodePath("../../StatusBars/Hover")
+max_hover_time = 1.0
+hover_vel = -32.0
 hover_particles = NodePath("../../Particles/HoverParticles")
 player = NodePath("../..")
 metadata/_edit_group_ = true
@@ -483,11 +507,16 @@ shape = SubResource("RectangleShape2D_2j87p")
 position = Vector2(24, -32)
 shape = SubResource("RectangleShape2D_6u6ve")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Abilities/HoverAbility"]
+stream = ExtResource("15_gai1c")
+volume_db = -7.0
+bus = &"SFX"
+
 [node name="SuperJumpAbility" type="Area2D" parent="Abilities" node_paths=PackedStringArray("super_jump_bar", "jump_land_particles", "super_jump_particles", "player")]
 position = Vector2(96, 64)
 script = ExtResource("12_egriw")
 super_jump_bar = NodePath("../../StatusBars/SuperJump")
-jump_vel = 288.0
+jump_vel = 296.0
 jump_land_particles = NodePath("../../Particles/JumpLandParticles")
 super_jump_particles = NodePath("../../Particles/SuperJumpParticles")
 player = NodePath("../..")
@@ -527,6 +556,16 @@ shape = SubResource("RectangleShape2D_akgil")
 position = Vector2(32, -56)
 shape = SubResource("RectangleShape2D_0mvsy")
 
+[node name="ChargeSFX" type="AudioStreamPlayer" parent="Abilities/SuperJumpAbility"]
+stream = ExtResource("18_bwulq")
+volume_db = -7.0
+bus = &"SFX"
+
+[node name="JumpSFX" type="AudioStreamPlayer" parent="Abilities/SuperJumpAbility"]
+stream = ExtResource("20_bgqow")
+volume_db = -7.0
+bus = &"SFX"
+
 [node name="Cursor" type="Area2D" parent="Abilities"]
 z_index = 2
 monitorable = false
@@ -555,6 +594,28 @@ shape = SubResource("RectangleShape2D_esqlg")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Abilities/ControllerBoundary"]
 position = Vector2(0, 50)
 shape = SubResource("RectangleShape2D_esqlg")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Abilities/ControllerBoundary"]
+position = Vector2(158, 0)
+shape = SubResource("RectangleShape2D_ih1gj")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Abilities/ControllerBoundary"]
+position = Vector2(-158, 0)
+shape = SubResource("RectangleShape2D_ih1gj")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Abilities/ControllerBoundary"]
+position = Vector2(0, 90)
+shape = SubResource("RectangleShape2D_ehu13")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Abilities/ControllerBoundary"]
+position = Vector2(0, -92)
+shape = SubResource("RectangleShape2D_ehu13")
+
+[node name="ClickSFX" type="AudioStreamPlayer" parent="Abilities"]
+stream = ExtResource("23_45isu")
+
+[node name="MoveSFX" type="AudioStreamPlayer" parent="Abilities"]
+stream = ExtResource("24_5ue7u")
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 process_mode = 2
@@ -599,6 +660,14 @@ text = "Restart"
 [node name="ToMenuButton" type="Button" parent="PauseMenu/VBoxContainer"]
 layout_mode = 2
 text = "To Menu"
+
+[node name="LandSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_1caqa")
+bus = &"SFX"
+
+[node name="StartupSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_imgoy")
+bus = &"SFX"
 
 [connection signal="pressed" from="PauseMenu/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]

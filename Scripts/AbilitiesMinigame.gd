@@ -64,18 +64,22 @@ func _physics_process(delta):
 func cursor_movement():
 	if Input.is_action_just_pressed("up") && cursor.position.y > -64:
 		cursor.position.y -= 32
+		$MoveSFX.play()
 		if selected != null:
 			selected.position.y -= 32
 	if Input.is_action_just_pressed("down") && cursor.position.y < 64:
 		cursor.position.y += 32
+		$MoveSFX.play()
 		if selected != null:
 			selected.position.y += 32
 	if Input.is_action_just_pressed("left") && cursor.position.x > -128:
 		cursor.position.x -= 32
+		$MoveSFX.play()
 		if selected != null:
 			selected.position.x -= 32
 	if Input.is_action_just_pressed("right") && cursor.position.x < 128:
 		cursor.position.x += 32
+		$MoveSFX.play()
 		if selected != null:
 			selected.position.x += 32
 
@@ -84,11 +88,13 @@ func cursor_selection():
 	if Input.is_action_just_pressed("button_0"):
 		if selected == null:
 			if cursor.has_overlapping_areas():
+				$ClickSFX.play()
 				selected = cursor.get_overlapping_areas()[0]
 				selected.modulate.a = 0.5
 				selected.z_index = 1
 		else:
 			if !selected.has_overlapping_areas():
+				$ClickSFX.play()
 				selected.modulate.a = 1.0
 				selected.z_index = 0
 				selected = null
