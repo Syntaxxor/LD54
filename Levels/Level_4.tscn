@@ -20,6 +20,8 @@ position = Vector2(-1300, 56)
 [node name="LevelEnd" parent="." instance=ExtResource("4_33f0k")]
 position = Vector2(-448, -272)
 scale = Vector2(-1, 1)
+delivery_name = "A cAn exam cheat sheet"
+is_final = true
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("5_ebtpr")

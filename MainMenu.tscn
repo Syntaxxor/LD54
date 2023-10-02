@@ -11,7 +11,7 @@
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_oa7vy")
-level_paths = Array[String](["res://Levels/Level_0.tscn", "res://Levels/Level_1.tscn", "res://Levels/Level_2.tscn", "res://Levels/Level_3.tscn"])
+level_paths = Array[String](["res://Levels/Level_0.tscn", "res://Levels/Level_1.tscn", "res://Levels/Level_2.tscn", "res://Levels/Level_3.tscn", "res://Levels/Level_4.tscn"])
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

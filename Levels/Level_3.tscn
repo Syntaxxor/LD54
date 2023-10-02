@@ -24,7 +24,8 @@ layer_0/tile_data = PackedInt32Array(589772, 131072, 0, 589773, 131072, 0, 58977
 
 [node name="LevelEnd" parent="." instance=ExtResource("3_mqeak")]
 position = Vector2(-128, -320)
-is_final = true
+next_level = "res://Levels/Level_4.tscn"
+delivery_name = "Precisely 3 socks"
 
 [node name="MusicStarter" type="Node" parent="."]
 script = ExtResource("6_jehyp")
