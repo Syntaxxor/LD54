@@ -16,12 +16,13 @@ config/use_custom_user_dir=true
 config/custom_user_dir_name="bbd-mk0"
 config/features=PackedStringArray("4.1", "Forward Plus")
 boot_splash/show_image=false
-config/icon="res://icon.svg"
+config/icon="res://icon.png"
 
 [autoload]
 
 LevelSwitcher="*res://Objects/LevelSwitcher.tscn"
 SpeedrunTimer="*res://Scripts/SpeedrunTimer.gd"
+MusicPlayer="*res://Scripts/MusicPlayer.gd"
 
 [display]
 

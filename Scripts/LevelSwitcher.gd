@@ -13,6 +13,7 @@ func change_level(level_path: String):
 	await tween.finished
 	
 	Engine.time_scale = 1.0
+	MusicPlayer.set_low_pass_strength(0.0)
 	get_tree().paused = false
 	get_tree().change_scene_to_file(level_path)
 	

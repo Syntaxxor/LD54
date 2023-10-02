@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://wn8bxv7bi1gk"]
+[gd_scene load_steps=8 format=3 uid="uid://wn8bxv7bi1gk"]
 
 [ext_resource type="PackedScene" uid="uid://ca7e0urq7efdl" path="res://Objects/LevelEnvironment.tscn" id="1_cqygs"]
 [ext_resource type="TileSet" uid="uid://d0jjl3a80btdd" path="res://TileSets/TileSet.tres" id="1_gfqy2"]
 [ext_resource type="PackedScene" uid="uid://buoem823x7i00" path="res://Objects/DeathTrigger.tscn" id="2_4w0ui"]
 [ext_resource type="PackedScene" uid="uid://ddusvf1o8rfkx" path="res://Objects/Player.tscn" id="2_wsrxf"]
 [ext_resource type="PackedScene" uid="uid://cdjnlhh8h2wjr" path="res://Objects/LevelEnd.tscn" id="3_thd31"]
+[ext_resource type="Script" path="res://Scripts/MusicStarter.gd" id="6_2ye63"]
+[ext_resource type="AudioStream" uid="uid://cwuirkt1lr3x8" path="res://SFX/music_level.ogg" id="7_mh2y2"]
 
 [node name="Level_1" type="Node2D"]
 
@@ -26,3 +28,7 @@ position = Vector2(352, -144)
 scale = Vector2(-1, 1)
 next_level = "res://Levels/Level_2.tscn"
 delivery_name = "A plastic pickle."
+
+[node name="MusicStarter" type="Node" parent="."]
+script = ExtResource("6_2ye63")
+stream = ExtResource("7_mh2y2")

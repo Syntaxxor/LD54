@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://clbjx5y6mj4la"]
+[gd_scene load_steps=9 format=3 uid="uid://clbjx5y6mj4la"]
 
 [ext_resource type="PackedScene" uid="uid://67ohqgorddin" path="res://Objects/Background.tscn" id="1_kw3tc"]
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_oa7vy"]
@@ -6,6 +6,8 @@
 [ext_resource type="TileSet" uid="uid://d0jjl3a80btdd" path="res://TileSets/TileSet.tres" id="3_j51uw"]
 [ext_resource type="PackedScene" uid="uid://cgdmbasimfie4" path="res://Objects/ShadowGradient.tscn" id="5_1auof"]
 [ext_resource type="Script" path="res://Scripts/UISounds.gd" id="5_gkr6y"]
+[ext_resource type="Script" path="res://Scripts/MusicStarter.gd" id="7_8y8lk"]
+[ext_resource type="AudioStream" uid="uid://dw30a7k02dr2t" path="res://SFX/music_menu.ogg" id="8_sm8y3"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_oa7vy")
@@ -27,9 +29,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -160.0
-offset_top = -72.0
+offset_top = -88.0
 offset_right = 160.0
-offset_bottom = -28.0
+offset_bottom = -44.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.666667, 0.470588, 0.345098, 1)
@@ -47,9 +49,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -40.0
-offset_top = -12.0
+offset_top = -41.0
 offset_right = 40.0
-offset_bottom = 62.0
+offset_bottom = 59.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -64,6 +66,11 @@ script = ExtResource("5_gkr6y")
 [node name="OptionsButton" type="Button" parent="MainMenu"]
 layout_mode = 2
 text = "Settings"
+script = ExtResource("5_gkr6y")
+
+[node name="CreditsButton" type="Button" parent="MainMenu"]
+layout_mode = 2
+text = "Credits"
 script = ExtResource("5_gkr6y")
 
 [node name="QuitButton" type="Button" parent="MainMenu"]
@@ -215,6 +222,49 @@ value = 10.0
 tick_count = 11
 script = ExtResource("5_gkr6y")
 
+[node name="Credits" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -512.0
+offset_top = -88.0
+offset_right = -192.0
+offset_bottom = 92.0
+theme = ExtResource("2_7w150")
+
+[node name="Label" type="Label" parent="Credits"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = 264.0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "For Ludum Dare 54
+By Rhapsody Aria
+Software used:
+Engine - Godot
+Art - Pixelorama
+Music/SFX - Cakewalk, Surge XT
+Special Thanks:
+Gadget, Cynthia, Nebella, Adenya, Kiwi & Co., Lavii, Zoey & Co."
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Back" type="Button" parent="Credits"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -44.0
+offset_top = -22.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Back"
+script = ExtResource("5_gkr6y")
+
 [node name="MainMenuTarget" type="Node2D" parent="."]
 
 [node name="LevelSelectTarget" type="Node2D" parent="."]
@@ -222,6 +272,9 @@ position = Vector2(0, 224)
 
 [node name="OptionsTarget" type="Node2D" parent="."]
 position = Vector2(384, 0)
+
+[node name="CreditsTarget" type="Node2D" parent="."]
+position = Vector2(-352, 0)
 
 [node name="QuitTarget" type="Node2D" parent="."]
 position = Vector2(0, -320)
@@ -234,8 +287,13 @@ range_layer_max = 1
 
 [node name="CanvasLayer" parent="." instance=ExtResource("5_1auof")]
 
+[node name="MusicStarter" type="Node" parent="."]
+script = ExtResource("7_8y8lk")
+stream = ExtResource("8_sm8y3")
+
 [connection signal="pressed" from="MainMenu/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MainMenu/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainMenu/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="MainMenu/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="ScrollContainer/LevelSelect/BackToMenu" to="." method="_on_back_to_menu_pressed"]
 [connection signal="pressed" from="Settings/PanelContainer/ScrollContainer/VBoxContainer/BackToMenu" to="." method="_on_back_to_menu_pressed"]
@@ -244,3 +302,4 @@ range_layer_max = 1
 [connection signal="value_changed" from="Settings/PanelContainer/ScrollContainer/VBoxContainer/Global" to="." method="sound_value_changed"]
 [connection signal="value_changed" from="Settings/PanelContainer/ScrollContainer/VBoxContainer/SFX" to="." method="sound_value_changed"]
 [connection signal="value_changed" from="Settings/PanelContainer/ScrollContainer/VBoxContainer/Music" to="." method="sound_value_changed"]
+[connection signal="pressed" from="Credits/Back" to="." method="_on_back_to_menu_pressed"]

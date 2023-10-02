@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpjlokd83llgs"]
+[gd_scene load_steps=8 format=3 uid="uid://cpjlokd83llgs"]
 
 [ext_resource type="TileSet" uid="uid://d0jjl3a80btdd" path="res://TileSets/TileSet.tres" id="1_h6m6l"]
 [ext_resource type="PackedScene" uid="uid://ca7e0urq7efdl" path="res://Objects/LevelEnvironment.tscn" id="2_6krg6"]
 [ext_resource type="PackedScene" uid="uid://ddusvf1o8rfkx" path="res://Objects/Player.tscn" id="3_dq7ld"]
 [ext_resource type="PackedScene" uid="uid://cdjnlhh8h2wjr" path="res://Objects/LevelEnd.tscn" id="4_w1n05"]
 [ext_resource type="PackedScene" uid="uid://buoem823x7i00" path="res://Objects/DeathTrigger.tscn" id="5_ksflu"]
+[ext_resource type="Script" path="res://Scripts/MusicStarter.gd" id="6_thkww"]
+[ext_resource type="AudioStream" uid="uid://cwuirkt1lr3x8" path="res://SFX/music_level.ogg" id="7_ne7an"]
 
 [node name="Level_0" type="Node2D"]
 
@@ -45,3 +47,7 @@ offset_right = -160.0
 offset_bottom = 87.0
 theme_type_variation = &"HeaderMedium"
 text = "Select/Tab to open abilities"
+
+[node name="MusicStarter" type="Node" parent="."]
+script = ExtResource("6_thkww")
+stream = ExtResource("7_ne7an")

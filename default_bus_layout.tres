@@ -1,4 +1,9 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://dvys7qwc0kq2b"]
+[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://dvys7qwc0kq2b"]
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_00mwv"]
+resource_name = "LowPassFilter"
+cutoff_hz = 20500.0
+db = 2
 
 [resource]
 bus/1/name = &"SFX"
@@ -13,3 +18,5 @@ bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = 0.0
 bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectLowPassFilter_00mwv")
+bus/2/effect/0/enabled = true

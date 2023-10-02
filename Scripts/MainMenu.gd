@@ -68,6 +68,12 @@ func _on_options_button_pressed():
 		$Settings/PanelContainer/ScrollContainer/VBoxContainer/BackToMenu.grab_focus()
 
 
+func _on_credits_button_pressed():
+	if !busy:
+		move_camera($CreditsTarget.position)
+		$Credits/Back.grab_focus()
+
+
 func load_settings():
 	var conf = ConfigFile.new()
 	if FileAccess.file_exists(settings_path):

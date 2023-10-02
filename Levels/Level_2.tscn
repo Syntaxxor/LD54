@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqaljpqjqflir"]
+[gd_scene load_steps=9 format=3 uid="uid://bqaljpqjqflir"]
 
 [ext_resource type="PackedScene" uid="uid://ddusvf1o8rfkx" path="res://Objects/Player.tscn" id="1_jvkqk"]
 [ext_resource type="PackedScene" uid="uid://ca7e0urq7efdl" path="res://Objects/LevelEnvironment.tscn" id="1_trqmh"]
@@ -6,6 +6,8 @@
 [ext_resource type="TileSet" uid="uid://d0jjl3a80btdd" path="res://TileSets/TileSet.tres" id="2_p1t8d"]
 [ext_resource type="PackedScene" uid="uid://cdjnlhh8h2wjr" path="res://Objects/LevelEnd.tscn" id="3_klaie"]
 [ext_resource type="Texture2D" uid="uid://wa0lfcemag7r" path="res://Textures/EasterEgg.png" id="6_md73m"]
+[ext_resource type="Script" path="res://Scripts/MusicStarter.gd" id="7_avj4n"]
+[ext_resource type="AudioStream" uid="uid://cwuirkt1lr3x8" path="res://SFX/music_level.ogg" id="8_2rvam"]
 
 [node name="Level_2" type="Node2D"]
 
@@ -38,3 +40,7 @@ offset_top = 8.0
 offset_right = -578.0
 offset_bottom = 26.0
 text = "Trans rights baybeeeee"
+
+[node name="MusicStarter" type="Node" parent="."]
+script = ExtResource("7_avj4n")
+stream = ExtResource("8_2rvam")

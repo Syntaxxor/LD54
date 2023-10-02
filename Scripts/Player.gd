@@ -132,6 +132,7 @@ func _on_to_menu_button_pressed():
 	get_tree().paused = false
 	$Abilities.emit_signal("cancel_tweens")
 	Engine.time_scale = 1.0
+	MusicPlayer.set_low_pass_strength(0.0)
 	LevelSwitcher.change_level("res://MainMenu.tscn")
 
 
@@ -139,6 +140,7 @@ func restart_level():
 	get_tree().paused = false
 	$Abilities.emit_signal("cancel_tweens")
 	Engine.time_scale = 1.0
+	MusicPlayer.set_low_pass_strength(0.0)
 	LevelSwitcher.change_level(get_tree().current_scene.scene_file_path)
 
 

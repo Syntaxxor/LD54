@@ -39,6 +39,7 @@ func _process(delta):
 			animation_player.play_backwards("Slide")
 			var tween := create_tween()
 			tween.tween_property(Engine, "time_scale", slow_time, 0.1)
+			tween.tween_method(MusicPlayer.set_low_pass_strength, 0.0, 1.0, 0.01)
 			
 			cancel_tweens.connect(tween.kill)
 			
@@ -48,6 +49,7 @@ func _process(delta):
 			animation_player.play("Slide")
 			var tween := create_tween()
 			tween.tween_property(Engine, "time_scale", 1.0, 0.1)
+			tween.tween_method(MusicPlayer.set_low_pass_strength, 1.0, 0.0, 0.1)
 			
 			cancel_tweens.connect(tween.kill)
 			tween.finished.connect(disconnect.bind("cancel_tweens", tween.kill))

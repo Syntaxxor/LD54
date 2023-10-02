@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://can2mvyy7bnim"]
+[gd_scene load_steps=8 format=3 uid="uid://can2mvyy7bnim"]
 
 [ext_resource type="PackedScene" uid="uid://ca7e0urq7efdl" path="res://Objects/LevelEnvironment.tscn" id="1_h6efv"]
 [ext_resource type="PackedScene" uid="uid://ddusvf1o8rfkx" path="res://Objects/Player.tscn" id="1_rl3dy"]
 [ext_resource type="TileSet" uid="uid://d0jjl3a80btdd" path="res://TileSets/TileSet.tres" id="2_0hb4b"]
 [ext_resource type="PackedScene" uid="uid://buoem823x7i00" path="res://Objects/DeathTrigger.tscn" id="2_kdp2l"]
 [ext_resource type="PackedScene" uid="uid://cdjnlhh8h2wjr" path="res://Objects/LevelEnd.tscn" id="3_mqeak"]
+[ext_resource type="Script" path="res://Scripts/MusicStarter.gd" id="6_jehyp"]
+[ext_resource type="AudioStream" uid="uid://clf8b5a766x30" path="res://SFX/music_final.ogg" id="7_imaqc"]
 
 [node name="Level_3" type="Node2D"]
 
@@ -23,3 +25,7 @@ layer_0/tile_data = PackedInt32Array(589772, 131072, 0, 589773, 131072, 0, 58977
 [node name="LevelEnd" parent="." instance=ExtResource("3_mqeak")]
 position = Vector2(-128, -320)
 is_final = true
+
+[node name="MusicStarter" type="Node" parent="."]
+script = ExtResource("6_jehyp")
+stream = ExtResource("7_imaqc")
