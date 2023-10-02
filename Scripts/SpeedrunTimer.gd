@@ -12,7 +12,7 @@ var is_running = false
 var time = 0.0
 
 
-var speedrun_mode := SpeedrunMode.Off
+var speedrun_mode := SpeedrunMode.Level
 
 
 func _ready():

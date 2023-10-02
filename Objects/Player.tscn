@@ -270,6 +270,8 @@ size = Vector2(96, 4)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
+floor_constant_speed = true
+floor_max_angle = 0.872665
 floor_snap_length = 4.0
 script = ExtResource("1_28e3r")
 move_speed = 128.0
